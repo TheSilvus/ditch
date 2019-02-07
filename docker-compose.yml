@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+    ditch:
+        build:
+            context: .
+        volumes:
+            - "./:/app/"
+        env_file:
+            - "ditch.env"
