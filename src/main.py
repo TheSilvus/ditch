@@ -169,7 +169,7 @@ async def on_message(message):
     if not message.content.startswith("!"):
         return
 
-    print("Received potential command: {}", message.content)
+    print("Received potential command: {}".format(message.content))
 
     content = message.content[1:]
     content_split = content.split(" ", 1)
