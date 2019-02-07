@@ -49,21 +49,21 @@ class YTDLSource(discord.PCMVolumeTransformer):
             try:
                 return ytdl.extract_info(url, download=False)
             except Exception as e:
-                print("Could not load player info")
+                print("Could not load URL info")
                 print(e)
                 return None
 
         try:
             data = await asyncio.wait_for(loop.run_in_executor(None, extract_info), timeout=3.0)
         except asyncio.TimeoutError:
-            print("Loading player info timed out")
+            print("Loading URL info timed out")
             return None
 
         if data == None:
-            print("Could not load player info for unknown reason")
+            print("Could not load URL info for unknown reason")
             return None
         if "url" not in data:
-            print("Player is not a playable video")
+            print("URL is not a playable audio source")
             return None
 
         filename = data["url"]
@@ -127,7 +127,7 @@ class VoiceConnection:
             self.next_song_event.set()
 
         if player == None:
-            print("Unable to play {}".format(self.player_url))
+            print("Unable to play from {}".format(self.player_url))
             done(None)
         else:
             self.voice_client.play(player, after=done)
