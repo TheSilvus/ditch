@@ -330,5 +330,4 @@ if "DISCORD_TOKEN" not in os.environ:
     print("No discord token environment variable. Exiting")
     sys.exit()
 else:
-    # client.run('NTQwNTM2NTEzOTk0MjkzMjU5.DzSV4w.MbEcS3YvA-FXrX-Du6sBq3a9jRE')
     client.run(os.environ["DISCORD_TOKEN"])
