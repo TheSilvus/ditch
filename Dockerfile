@@ -8,7 +8,6 @@ RUN apk --no-cache add python3 youtube-dl ffmpeg opus && \
         apk del install_deps
 
 COPY . /app/
-COPY ./data-empty/ /app/data/
 
 WORKDIR /app
 CMD ["python3", "-u", "src/main.py"]

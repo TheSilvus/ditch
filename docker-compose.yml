@@ -5,6 +5,7 @@ services:
         build:
             context: .
         volumes:
-            - "./:/app/"
+            - "./src/:/app/src/"
+            - "./data/:/app/data/"
         env_file:
             - "ditch.env"

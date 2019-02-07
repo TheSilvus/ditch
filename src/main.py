@@ -83,13 +83,17 @@ playlists = None
 def load_playlists():
     global playlists
 
-    with open('data/playlists.json', 'r') as f:
-        data = f.read()
-    playlists = json.loads(data)
+    try:
+        with open('data/playlists.json', 'r') as f:
+            data = f.read()
+        playlists = json.loads(data)
+    except FileNotFoundError:
+        # Ignore FileNotFoundError and initialize data as empty. Files will be created on write.
+        playlists = {}
 load_playlists()
 
 async def write_playlists():
-    async with aiofiles.open('data/playlists.json', mode='w') as f:
+    async with aiofiles.open('data/playlists.json', mode='w+') as f:
         await f.write(json.dumps(playlists))
 
 
