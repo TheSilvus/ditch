@@ -11,6 +11,9 @@ Discord channel. It then expanded to be a simple, generic audio-playing bot with
 
 After completing the setup you can edit the Python files and restart the bot to apply changes.
 
+If the Dockerfile or the python dependencies changed, you have to rebuild the image using
+`docker-compose build`.
+
 ## Usage
 
 - `!play URL`: Enqueue a link
