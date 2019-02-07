@@ -122,11 +122,9 @@ class VoiceConnection:
         self.player = player
         self.player_url = url
 
-        # BUG: playing an unplayable song (e.g. "!play fndsjkflds") causes the bot to freeze.
-        # Reconnection solves the issue.
         def done(error):
+            # The flag is cleared again after it is detected by #enqueue()
             self.next_song_event.set()
-            self.next_song_event.clear()
 
         if player == None:
             print("Unable to play {}".format(self.player_url))
@@ -139,6 +137,7 @@ class VoiceConnection:
         while self.connected and (len(self.queue) > 0 or self.playlist != None):
             await self.play_next()
             await self.next_song_event.wait()
+            self.next_song_event.clear()
         self.playing = False
 
     async def enqueue(self, url):
